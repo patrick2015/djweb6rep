@@ -118,7 +118,7 @@
                 {% endfor %}
         </table>
 
-<p><h3>Add an entry to Dinosaur:</h3>{{error_message}}</p>
+<p><h3>Add an entry to Dinosaur:</h3>{{error_messageA}}</p>
         <form action="/#dinosaur" name="dinosaur" method="post">{% csrf_token %}
     <label for="your_name">id: </label>
     <input id="your_name" type="text" name="id" value="{{ current_name }}" placeholder="No existing ids">
@@ -130,7 +130,7 @@
     <input id="your_name" type="text" name="dietary_order" value="{{ current_name }}">
     
     <label for="your_name">Threat Level: </label>
-    <input id="your_name" type="text" name="threat_level" value="{{ current_name }}">
+    <input id="your_name" type="text" name="threat_level" value="{{ current_name }}" placeholder="0 to 10">
     
     <label for="your_name">Contained: </label>
     <input id="your_name" type="text" name="contained" value="{{ current_name }}" placeholder="0 or 1">
@@ -162,7 +162,7 @@
                 {% endfor %}
         </table>
         <!-- /#page-content-wrapper -->
-<p><h3>Add an entry to Visitor:</h3>{{error_message}}</p>
+<p><h3>Add an entry to Visitor:</h3>{{error_messageB}}</p>
         <form action="/#visitor" name="dinosaur" method="post">{% csrf_token %}
     <label for="your_name">id: </label>
     <input id="your_name" type="text" name="id" value="{{ current_name }}" placeholder="No existing ids">

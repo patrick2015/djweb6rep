@@ -17,7 +17,9 @@ def homepage(request):
         'homepage_text_content' : 'Text on the right',
     }
     '''
-    error_message = ""
+    error_messageA = ""
+    error_messageB = ""
+
     with connection.cursor() as cursor:
     
         if request.method == 'POST' and "dinosaur" in request.POST:
@@ -26,8 +28,8 @@ def homepage(request):
             ba = bool(re.search('[0-9]*', request.POST.get("id")))
             bb = bool(re.search('[a-zA-Z]*', request.POST.get("species")))
             bc = bool(re.search('[a-zA-Z]*', request.POST.get("dietary_order")))
-            bd = bool(re.search('[a-zA-Z]*', request.POST.get("threat_level")))
-            be = bool(re.search('[0-1]', request.POST.get("threat_level")))
+            bd = bool(re.search('[0-10]*', request.POST.get("threat_level")))
+            be = bool(re.search('[0-1]', request.POST.get("contained")))
             cursor.execute("SELECT id FROM dinosaur", [])
             bf = True
 
@@ -41,11 +43,11 @@ def homepage(request):
                 print(item)
                 if int(request.POST.get("id")) == int(item['id']):
                     bf = False
-
+            print(ba, bb, bc, bd, be, bf)
             if ba and bb and bc and bd and be and bf:
                 cursor.execute("INSERT INTO dinosaur(id, species, dietary_order, threat_level, contained) VALUES("+request.POST.get("id")+", \""+request.POST.get("species")+"\",\""+request.POST.get("dietary_order")+"\","+request.POST.get("threat_level")+","+request.POST.get("contained")+")", [])
             else:
-                error_message = "Your entry was rejected. One or more of your fields was invalid."
+                error_messageA = "Your entry was rejected. One or more of your fields was invalid."
 
         if request.method == 'POST' and "visitor" in request.POST:
             print(request.POST.get("id"))
@@ -72,7 +74,7 @@ def homepage(request):
             if ba and bb and bc and bf:
                 cursor.execute("INSERT INTO visitor(id, name, strikes) VALUES("+request.POST.get("id")+", \""+request.POST.get("name")+"\","+request.POST.get("strikes")+")", [])
             else:
-                error_message = "Your entry was rejected. One or more of your fields was invalid."
+                error_messageB = "Your entry was rejected. One or more of your fields was invalid."
 
         cursor.execute("SELECT visitor.name, visitorLocation.number, zone.lockdown_status, visitorLocation.x_coord, y_coord FROM visitor, visitorLocation, zone WHERE visitor.id = visitorLocation.id AND zone.number = visitorLocation.number AND zone.lockdown_status != 'ZONE NOT ON LOCKDOWN: NO DANGER';")
         columns = [col[0] for col in cursor.description]        
@@ -146,7 +148,7 @@ def homepage(request):
     # print(visitors)
     # print(dinosaurs);
     template = loader.get_template('djapp1/index.html')
-    context = {'query3': query3, 'query2': query2, 'query1': query1, 'error_message': error_message, 'dinosaur_list': dinosaurs, 'visitor_list': visitors, 'employee_list': employees,
+    context = {'query3': query3, 'query2': query2, 'query1': query1, 'error_messageB': error_messageB, 'error_messageA': error_messageA, 'dinosaur_list': dinosaurs, 'visitor_list': visitors, 'employee_list': employees,
     'exhibit_list': exhibits, 'zone_list': zones, 'computerSystem_list': computerSystems, 'zone_list': zones
 
     }
