@@ -1,0 +1,3 @@
+venv
+*.pyc
+djweb6/djweb6/settings.py
