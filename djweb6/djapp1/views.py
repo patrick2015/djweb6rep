@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from django.db import connection
 from django.core.urlresolvers import reverse
 import datetime
-from .forms import ContactForm
-from django.views.generic.edit import FormView
 import re
 
 # Create your views here.
