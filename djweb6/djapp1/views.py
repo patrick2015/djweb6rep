@@ -39,7 +39,7 @@ def homepage(request):
 
             for item in bg:
                 print(item)
-                if long(request.POST.get("id")) == long(item['id']):
+                if int(request.POST.get("id")) == int(item['id']):
                     bf = False
 
             if ba and bb and bc and bd and be and bf:
@@ -65,7 +65,7 @@ def homepage(request):
 
             for item in bg:
                 print(item)
-                if long(request.POST.get("id")) == long(item['id']):
+                if int(request.POST.get("id")) == int(item['id']):
                     bf = False
 
 
