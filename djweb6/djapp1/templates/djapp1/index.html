@@ -1,0 +1,229 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Jurassic Park</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'jp/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'jp/css/simple-sidebar.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Tables
+                    </a>
+                </li>
+                <li>
+                    <a href="#dinosaur">Dinosaurs</a>
+                </li>
+                <li>
+                    <a href="#visitor">Visitors</a>
+                </li>
+                <li>
+                    <a href="#employee">Employees</a>
+                </li>
+                <li>
+                    <a href="#exhibit">Exhibits</a>
+                </li>
+                <li>
+                    <a href="#computerSystem">Computer Systems</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Jurassic Park Database</h1>
+                        <p>This site can be used to view all of the entity tables currently in the Jurassic Park Database.</p>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Jump to a Table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "dinosaur">
+        <p>
+        <h1>
+        Dinosaurs
+        </h1>
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>id</th>
+            <th>Species</th>
+            <th>Dietary Order</th>
+            <th>Danger Level</th>
+            <th>Contained</th> 
+          </tr>
+                {% for dinosaur in dinosaur_list %}
+                <tr>
+                <td>{{dinosaur.id}}</td>
+                <td>{{dinosaur.species}}</td>
+                <td>{{dinosaur.dietary_order}}</td>
+                <td>{{dinosaur.threat_level}}</td>
+                <td>{{dinosaur.contained}}</td>
+
+                </tr>
+                {% endfor %}
+        </table>
+        </div>
+
+        <div id = "visitor">
+
+        <p>
+        <h1>
+       Visitors
+        </h1>
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Strikes</th>
+          </tr>
+                {% for visitor in visitor_list %}
+                <tr>
+                <td>{{visitor.id}}</td>
+                <td>{{visitor.name}}</td>
+                <td>{{visitor.strikes}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+        <!-- /#page-content-wrapper -->
+
+        <div id = "employee">
+
+        <p>
+        <h1>
+       Employees
+        </h1>
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Job</th>
+                        <th>Salary</th>
+                         <th>Security Clearance</th>
+                       
+
+          </tr>
+                {% for employee in employee_list %}
+                <tr>
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.job}}</td>
+                <td>{{employee.salary}}</td>
+                <td>{{employee.security_clearance}}</td>
+
+                </tr>
+                {% endfor %}
+        </table>
+        <!-- /#page-content-wrapper -->
+        </div>
+
+        <div id = "exhibit">
+
+        <p>
+        <h1>
+       Exhibits
+        </h1>
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Revenue</th>
+                        <th>Date Last Maintained</th>
+
+          </tr>
+                {% for visitor in exhibit_list %}
+                <tr>
+                <td>{{visitor.name}}</td>
+                <td>{{visitor.cost}}</td>
+                <td>{{visitor.revenue}}</td>
+                <td>{{visitor.date_last_maintained}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+        <!-- /#page-content-wrapper -->
+        </div>
+
+        <div id = "computerSystem">
+
+        <p>
+        <h1>
+       Computer Systems
+        </h1>
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>id</th>
+            <th>Description</th>
+            <th>Online</th>
+          </tr>
+                {% for visitor in computerSystem_list %}
+                <tr>
+                <td>{{visitor.id}}</td>
+                <td>{{visitor.description}}</td>
+                <td>{{visitor.online}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+        <!-- /#page-content-wrapper -->
+        </div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{% static 'jp/js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'jp/js/bootstrap.min.js' %}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $("#dinosaur").click(function(e) {
+        document.getElementById("p1").innerHTML = "New text!";    });
+    </script>
+
+</body>
+
+</html>
