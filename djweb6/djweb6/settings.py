@@ -82,7 +82,7 @@ DATABASES = {
         'PASSWORD': 'polar9697',
         'HOST': 'pvd17.mysql.pythonanywhere-services.com',
         'TEST': {
-          NAME: 'pvd17$jurassic_park',
+        'NAME:' 'pvd17$jurassic_park',
     }
     }
 }
