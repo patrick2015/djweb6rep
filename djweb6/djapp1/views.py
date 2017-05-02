@@ -28,7 +28,7 @@ def homepage(request):
             ba = bool(re.search('[0-9]*', request.POST.get("id")))
             bb = bool(re.search('[a-zA-Z]*', request.POST.get("species")))
             bc = bool(re.search('[a-zA-Z]*', request.POST.get("dietary_order")))
-            bd = bool(re.search('[0-10]*', request.POST.get("threat_level")))
+            bd = bool(re.search('[0-9]|10', request.POST.get("threat_level")))
             be = bool(re.search('[0-1]', request.POST.get("contained")))
             cursor.execute("SELECT id FROM dinosaur", [])
             bf = True
