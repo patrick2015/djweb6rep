@@ -30,7 +30,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -55,6 +55,24 @@
                 <li>
                     <a href="#computerSystem">Computer Systems</a>
                 </li>
+                <li>
+                    <a href="#zone">Zones</a>
+                </li>
+
+                <li class="sidebar-brand">
+                    <a href="#query1">
+                        Queries
+                    </a>
+                </li>
+                <li>
+                    <a href="#query1">Query 1</a>
+                </li>
+                <li>
+                    <a href="#query2">Query 2</a>
+                </li>
+                <li>
+                    <a href="#query3">Query 3</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -65,8 +83,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>Jurassic Park Database</h1>
-                        <p>This site can be used to view all of the entity tables currently in the Jurassic Park Database.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Jump to a Table</a>
+                        <p>This site can be used to view the entity tables currently in the Jurassic Park Database. Several queries can also be viewed.
+
+                        </p><p>If you have spotted a dinosaur in Jurassic Park lately, or if you plan on visiting, you can add your information to the Dinosaur or Visitor table and it will be stored in the database for all to see.</p>
                     </div>
                 </div>
             </div>
@@ -78,6 +97,7 @@
         Dinosaurs
         </h1>
         </p>
+
         <table class = "table"> 
           <tr>
             <th>id</th>
@@ -97,6 +117,27 @@
                 </tr>
                 {% endfor %}
         </table>
+
+<p><h3>Add an entry to Dinosaur:</h3>{{error_message}}</p>
+        <form action="/#dinosaur" name="dinosaur" method="post">{% csrf_token %}
+    <label for="your_name">id: </label>
+    <input id="your_name" type="text" name="id" value="{{ current_name }}" placeholder="No existing ids">
+    
+    <label for="your_name">Species: </label>
+    <input id="your_name" type="text" name="species" value="{{ current_name }}" >
+
+    <label for="your_name">Dietary Order: </label>
+    <input id="your_name" type="text" name="dietary_order" value="{{ current_name }}">
+    
+    <label for="your_name">Threat Level: </label>
+    <input id="your_name" type="text" name="threat_level" value="{{ current_name }}">
+    
+    <label for="your_name">Contained: </label>
+    <input id="your_name" type="text" name="contained" value="{{ current_name }}" placeholder="0 or 1">
+    
+    <input type="submit" value="OK" name="dinosaur">
+</form>
+
         </div>
 
         <div id = "visitor">
@@ -121,7 +162,21 @@
                 {% endfor %}
         </table>
         <!-- /#page-content-wrapper -->
+<p><h3>Add an entry to Visitor:</h3>{{error_message}}</p>
+        <form action="/#visitor" name="dinosaur" method="post">{% csrf_token %}
+    <label for="your_name">id: </label>
+    <input id="your_name" type="text" name="id" value="{{ current_name }}" placeholder="No existing ids">
+    
+    <label for="your_name">name: </label>
+    <input id="your_name" type="text" name="name" value="{{ current_name }}" >
 
+    <label for="your_name">Strikes: </label>
+    <input id="your_name" type="text" name="strikes" value="{{ current_name }}" placeholder="0-3">
+    
+    
+    <input type="submit" value="OK" name="visitor">
+</form>
+</div>
         <div id = "employee">
 
         <p>
@@ -201,6 +256,102 @@
                 </tr>
                 {% endfor %}
         </table>
+        </div>
+        <div id = "zone">
+        <p>
+        <h1>
+       Zones
+        </h1>
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>Name</th>
+            <th>Ecosystem</th>
+            <th>Lockdown Status</th>
+          </tr>
+                {% for visitor in zone_list %}
+                <tr>
+                <td>{{visitor.number}}</td>
+                <td>{{visitor.ecosystem}}</td>
+                <td>{{visitor.lockdown_status}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+</div>
+
+        <div id = "query1">
+        <p>
+        <h1>
+       Query 1
+        </h1>
+        The park is in danger! Several regions (zones) of Jurassic Park are currently under lockdown. Find the names and locations of visitors in zones that are currently under lockdown, so that they can be rescued. 
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>Visitor Name</th>
+            <th>Zone Number</th>
+            <th>Zone Lockdown Status</th>
+            <th>X coord</th>
+            <th>Y coord</th>
+
+          </tr>
+                {% for visitor in query1 %}
+                <tr>
+                <td>{{visitor.name}}</td>
+                <td>{{visitor.number}}</td>
+                <td>{{visitor.lockdown_status}}</td>
+                <td>{{visitor.x_coord}}</td>
+                <td>{{visitor.y_coord}}</td>
+
+                </tr>
+                {% endfor %}
+        </table>
+</div>
+
+        <div id = "query2">
+        <p>
+        <h1>
+       Query 2
+        </h1>
+        In a locked down zone, any dinosaur present can represent a potential danger. Find the species and number of dinosaurs in the locked down zones.
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>Species</th>
+            <th>Zone Number</th>
+            <th>Count</th>
+          </tr>
+                {% for visitor in query2 %}
+                <tr>
+                <td>{{visitor.species}}</td>
+                <td>{{visitor.zone}}</td>
+                <td>{{visitor.count}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+</div>
+
+        <div id = "query3">
+        <p>
+        <h1>
+       Query 3
+        </h1>
+        The park authorities may not be able to arrive in time to help the visitors. What pairs of visitors are close enough to help each other? (Which visitors are in the same zone and within a 30 coordinate radius of each other?)
+        </p>
+        <table class = "table"> 
+          <tr>
+            <th>Visitor Name</th>
+            <th>Visitor Name</th>
+          </tr>
+                {% for visitor in query3 %}
+                <tr>
+                <td>{{visitor.aname}}</td>
+                <td>{{visitor.bname}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+</div>
+
         <!-- /#page-content-wrapper -->
         </div>
 
