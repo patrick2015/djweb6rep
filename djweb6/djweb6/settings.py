@@ -80,10 +80,7 @@ DATABASES = {
         'NAME': 'pvd17$jurassic_park',
         'USER': 'pvd17',
         'PASSWORD': 'polar9697',
-        'HOST': 'pvd17.mysql.pythonanywhere-services.com',
-        'TEST': {
-        'NAME:' 'pvd17$jurassic_park',
-    }
+        'HOST': 'pvd17.mysql.pythonanywhere-services.com'
     }
 }
 
