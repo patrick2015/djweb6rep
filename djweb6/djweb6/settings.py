@@ -84,6 +84,7 @@ DATABASES = {
         'TEST': {
           NAME: 'pvd17$jurassic_park',
     }
+    }
 }
 
 
