@@ -25,7 +25,7 @@ SECRET_KEY = 'f1vi9^a(f51r&u)f%+1$j%a%-u+b7)+@&klk_dy1-e++=cpv8l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pvd17.pythonanywhere.com']
 
 
 # Application definition
